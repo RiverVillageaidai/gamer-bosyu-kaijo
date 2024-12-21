@@ -69,21 +69,21 @@
           </li>
 
           <li>
-              <a class="nav-link text-light" >
+              <a class="nav-link text-light" href="<%= new_user_session_path %>" >
                   <i class="fa-solid fa-house"></i>
                   ログイン
               </a>
           </li>
 
           <li>
-              <a class="nav-link text-light" >
-                  <i class="fa-solid fa-house"></i>
+             <%= link_to  destroy_user_session_path, method: :delete, class:"nav-link text-light" do%>
+                  <i class="fa-solid fa-right-from-bracket"></i>
                   ログアウト
-              </a>
+                <%end%>
           </li>
 
           <li>
-              <a class="nav-link text-light" >
+              <a class="nav-link text-light" href="<%= new_user_registration_path %>" >
                   <i class="fa-solid fa-house"></i>
                   新規登録
               </a>
