@@ -1,3 +1,48 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+  
+      <%= image_tag @user.get_profile_image(200,200) %>
+      <p>
+        Name: <%= @user.name %><br>
+        
+       
+        誕生日: <%= @user.birthday %><br>
+        
+
+        introduction: <%= @user.introduction %><br>
+        
+      </p>
+
+      <button type="button" class="btn btn-success btn-lg btn-block" >
+        <%= link_to  edit_user_path(@user.id) do %>
+        <i>プロフィール編集</i>
+        <%end%>
+      </button>
+
+      <button type="button" class="btn btn-dark btn-lg btn-block" >
+        <%= link_to  edit_user_path(@user.id) do %>
+        <i>フォローユーザー</i>
+        <%end%>
+      </button>
+
+        <button type="button" class="btn btn-secondary btn-lg btn-block" >
+        <%= link_to  edit_user_path(@user.id) do %>
+        <i>ダイレクトメセージ</i>
+        <%end%>
+      </button>
+
+    </div>
+
+    <div class="col-md-7 offset-md-1">
+      ここにかれんだーとかひょうじしたいなとおもいます。
+    </div>
+
+  </div>
+
+
+
+</div>
