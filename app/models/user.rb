@@ -4,7 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  # プロフィール画像
   has_one_attached :profile_image
+
+   # アソシエーション
+   has_many :posts, dependent: :destroy
 
   def get_profile_image(width, height)
     unless profile_image.attached?
