@@ -1,2 +1,34 @@
 <h1>Posts#index</h1>
 <p>Find me in app/views/posts/index.html.erb</p>
+
+<table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>タイトル</th>
+            <th>本文</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%# ここに繰り返し要素を入れてデータを読み込む %>
+
+          <% @posts.each do |post| %>
+              <tr>
+                <td>
+                  <%# <%= link_to user_path(book.user_id) do %> % >
+                    <%# <%= image_tag book.user.get_profile_image(80,80) %>< /t d > % >
+                  <%# <% end %> % >
+                <td>
+                  <%= link_to post_path(post.id) do %>
+                    <%= post.title %>
+                  <% end %> 
+                </td>
+                <td><%= post.body %></td>
+              </tr>
+          <% end %>    
+        </tbody>
+            
+          
+          
+        
+      </table>
