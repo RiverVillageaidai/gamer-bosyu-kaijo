@@ -48,6 +48,13 @@
                     投稿一覧
                   </a>
                 </li>
+
+                <li>
+                  <a class="nav-link text-light" href="<%= new_post_path %>">
+                    <i class="fa-solid fa-house"></i>
+                   新規投稿
+                  </a>
+                </li>                
                 
                 <% if user_signed_in? %>
                   <a class="nav-link text-light" href="<%= user_path(current_user) %>">
@@ -63,12 +70,7 @@
                   </a>
                 </li>
 
-                <li>
-                  <a class="nav-link text-light" >
-                    <i class="fa-solid fa-house"></i>
-                   新規投稿
-                  </a>
-                </li>
+
 
                 <li>
                  <%= link_to  destroy_user_session_path, method: :delete, class:"nav-link text-light" do%>
