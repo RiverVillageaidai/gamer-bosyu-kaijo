@@ -22,7 +22,7 @@
                 </td>
 
                  <td>
-                  <%= link_to posts_path do %>
+                  <%= link_to post_path(post.id) do %>
                     <%= image_tag post.get_image(80,80) %>
                   <% end %>
                 </td>
