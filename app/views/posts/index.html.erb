@@ -22,7 +22,9 @@
                 </td>
 
                  <td>
-                投稿画像
+                  <%= link_to posts_path do %>
+                    <%= image_tag post.get_image(80,80) %>
+                  <% end %>
                 </td>
 
                 <td>
