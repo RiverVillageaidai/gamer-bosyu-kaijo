@@ -1,2 +1,27 @@
 <h1>Posts#edit</h1>
 <p>Find me in app/views/posts/edit.html.erb</p>
+
+      <%= form_with(model: @post, local: true) do |f| %>
+
+      <%= image_tag @post.get_image(600,600), class: "img-fluid" %><br>
+
+      <div class="form-group">
+        <label for="post_image">画像</label><br>
+        <%= f.file_field :image, accept: "image/*" %> 
+      </div>
+
+      <div class="form-group">
+        <label for="post_title">タイトル</label>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <label for="Post_body">本文</label>
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
+
+      <div class="form-group"> 
+        <%= f.submit '編集完了',class: 'btn btn-success' %>
+      </div>
+
+      <% end %>

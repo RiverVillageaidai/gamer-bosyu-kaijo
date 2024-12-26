@@ -16,6 +16,11 @@
       タイトル: <%= @post.title %><br>
         
       本文: <%= @post.body %><br>
+
+       <%= link_to  edit_post_path(@post.id) do%>
+          <i class="fa-solid fa-right-from-bracket"></i>
+          編集
+        <%end%>
     </div>
 
   </div>
