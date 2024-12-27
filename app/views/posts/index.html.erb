@@ -1,45 +1,39 @@
 <h1>Posts#index</h1>
 <p>Find me in app/views/posts/index.html.erb</p>
 
-<table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th>プロフィール画像</th>
-            <th>投稿画像</th>
-            <th>タイトル</th>
-            <th>本文</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%# ここに繰り返し要素を入れてデータを読み込む %>
+<div class="container mt-4 ">
+  <h1 class="mb-4 text-center ">投稿一覧</h1>
+  
+  <div class="text-end mb-5">
+    <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
+  </div>
 
-          <% @posts.each do |post| %>
-              <tr>
-                <td>
-                  <%= link_to user_path(post.user_id) do %>
-                    <%= image_tag post.user.get_profile_image(80,80) %>
-                  <% end %>
-                </td>
+  <div class="list-group">    
+    <% @posts.each do |post| %>
+      <a href="<%= post_path(post) %>" class="list-group-item list-group-item-action border border-primary">
 
-                 <td>
-                  <%= link_to post_path(post.id) do %>
-                    <%= image_tag post.get_image(80,80) %>
-                  <% end %>
-                </td>
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <%= image_tag post.get_image(300,300) %>
+          </div>
 
-                <td>
-                  <%= link_to post_path(post.id) do %>
-                    <%= post.title %>
-                  <% end %> 
-                </td>
+          <div class="col-md-8">
 
-                <td><%= post.body %>
-                </td>
-              </tr>
-          <% end %>    
-        </tbody>
-            
+            <p class ="mb-1 " style="font-size: 1.5rem; font-weight: bold;">
+              <%= post.title %>
+            </p>
+
+            <p class= " mb-1 w-100 text-wrap">
+              <%# 投稿の本文を短く切り取る %>
+              <%= truncate(post.body, length: 100) %>
+            </p>
+
+            <p class="text-muted small">投稿者: <%= post.user.name %> | <%= post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+          </div>
+        </div>
+      </a>  
+    <% end %> 
+  </div>
+
+</div>        
           
-          
-        
-      </table>

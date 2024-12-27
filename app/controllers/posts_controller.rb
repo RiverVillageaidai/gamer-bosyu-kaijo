@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
  
 
-  def index
-    @posts = Post.all
+  def index 
+    # 降順に並び替え
+    @posts = Post.all.order("created_at DESC")
   end
 
   def show
