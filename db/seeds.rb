@@ -21,3 +21,5 @@ Post.find_or_create_by!(title: "(test)ランクが上がりました") do |post|
   post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
   post.user = olivia
 end
+
+# rails db:seed RAILS_ENV=production これで本番環境にseedsを適用させます。
