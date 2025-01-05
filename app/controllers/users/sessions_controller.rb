@@ -18,6 +18,7 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  before_action :reject_user, only: [:create]
 
    protected
 
@@ -25,11 +26,11 @@ class Users::SessionsController < Devise::SessionsController
     @user = User.find_by(email: params[:user][:email]) #params[:モデル名][:カラム名]受け取ったemailに一致するユーザーを User モデルから検索
     # find_by メソッド:該当するレコードがあればそれを返し、なければ nil
     if @user #@user が nil でない（ユーザーが見つかった）場合
-      if @user.valid_password?(params[:user][:password]) && (@user.is_active == true)
-        flash[:alert] = "パスワードが間違っているか、既に退会しています。"
-        redirect_to new_user_registration
+      if @user.valid_password?(params[:user][:password]) && (@user.is_active == false)
+        flash[:alert] = "既に退会しています。新規登録してください。"
+        redirect_to new_user_registration_path
       else
-
+        flash[:notice] = "passwordが間違っています。"
       end
     end
   end
