@@ -3,7 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  #ログイン制限（active_for_authentication? : deviseの機能）
   
+  def active_for_authentication?
+    super && (is_active == true)#true の場合 → ユーザーはログインできる  nill(空白の時もログインできない。)　これがバグの原因新規登録時にTRUEを設定
+  end
+
   # プロフィール画像
   has_one_attached :profile_image
 

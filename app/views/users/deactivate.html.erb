@@ -1,0 +1,16 @@
+
+
+<h1>退会確認</h1>
+<p>
+  この操作は取り消せません。<br>
+  退会されますと一部機能が使用不可となります。<br>
+  再度利用する場合には新規登録が必要となります。<br>
+  本当に退会しますか？
+</p>
+
+<%= form_with(model: @user, url: withdraw_user_path(@user), method: :patch, local: true) do |f| %>
+
+  <%= submit_tag '退会する', data: { confirm: '本当に退会しますか？' } %>
+<% end %>
+
+<%= link_to 'キャンセル', user_path(@user) %>

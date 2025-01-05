@@ -24,6 +24,22 @@ class UsersController < ApplicationController
     end
   end
 
+  # ユーザー退会確認画面
+  def deactivate
+    @user = User.find(params[:id])
+  end
+
+  # ユーザー退会処理
+  def withdraw
+    @user = User.find(params[:id])
+    if @user.update(is_active: false) # 論理削除として退会状態に変更
+      reset_session # セッションをリセットしてログアウト（セキュリティ）
+      redirect_to root_path, notice: '退会処理が完了しました。'
+    else
+      render :deactivate, alert: '退会処理に失敗しました。'
+    end
+  end
+
   private
 
   def user_params
