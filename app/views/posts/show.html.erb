@@ -3,9 +3,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-  
-      <%= image_tag @post.user.get_profile_image(80,80) %><br>
       
+      <%= link_to user_path(@post_user.id) do%> 
+        <%= image_tag @post.user.get_profile_image(80,80) %><br>
+      <% end %>
       投稿者: <%= @post.user.name %><br>
         
     </div>
