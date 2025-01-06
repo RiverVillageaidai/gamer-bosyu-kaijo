@@ -18,24 +18,26 @@
         退会フラグこれはテスト用です: <%= @user.is_active %><br>
 
       </p>
-      
-      <button type="button" class="btn btn-success btn-lg btn-block" >
-        <%= link_to  edit_user_path(@user.id) do %>
-        <i>プロフィール編集</i>
-        <%end%>
-      </button>
+      <% if @user.id == current_user.id %>
+        <button type="button" class="btn btn-success btn-lg btn-block" >
+          <%= link_to  edit_user_path(@user.id) do %>
+         <i>プロフィール編集</i>
+         <%end%>
+       </button>
 
-      <button type="button" class="btn btn-dark btn-lg btn-block" >
-        <%= link_to  edit_user_path(@user.id) do %>
-        <i>フォローユーザー</i>
-        <%end%>
-      </button>
+        <button type="button" class="btn btn-dark btn-lg btn-block" >
+          <%= link_to  edit_user_path(@user.id) do %>
+          <i>フォローユーザー</i>
+          <%end%>
+       </button>
 
         <button type="button" class="btn btn-secondary btn-lg btn-block" >
-        <%= link_to  edit_user_path(@user.id) do %>
-        <i>ダイレクトメセージ</i>
-        <%end%>
-      </button>
+          <%= link_to  edit_user_path(@user.id) do %>
+          <i>ダイレクトメセージ</i>
+         <%end%>
+        </button>
+
+      <% end %>
 
     </div>
 
