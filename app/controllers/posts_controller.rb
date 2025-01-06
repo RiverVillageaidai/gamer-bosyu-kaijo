@@ -39,11 +39,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update(post_params)
       #  "flash[:notice] = 'メッセージ内容'"　リクエスト間を超えてメッセージを表示するための仕組み
-      flash[:notice] = "You have updated user successfully."
-      flash[:alert] = ""
+      flash[:notice] = "編集が成功しました。"
+      
       redirect_to post_path(@post.id)
     else
-      
+      flash.now[:alert] = "編集に失敗しました。内容を確認してください。"
       render :edit
     end
   end
