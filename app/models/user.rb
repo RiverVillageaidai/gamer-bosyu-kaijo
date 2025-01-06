@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #ログイン制限（active_for_authentication? : deviseの機能）
-  
   def active_for_authentication?
     super && (is_active == true)#true の場合 → ユーザーはログインできる  nill(空白の時もログインできない。)　これがバグの原因新規登録時にTRUEを設定
   end
@@ -16,6 +15,12 @@ class User < ApplicationRecord
    # アソシエーション
    has_many :posts, dependent: :destroy
 
+    # バリデーション
+    validates :name, presence: true 
+    validates :email, presence: true 
+    validates :introduction, length: { maximum: 500 }
+
+  # プロフィール画像用
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

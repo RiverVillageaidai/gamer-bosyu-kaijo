@@ -15,11 +15,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       #  "flash[:notice] = 'メッセージ内容'"　リクエスト間を超えてメッセージを表示するための仕組み
-      flash[:notice] = "You have updated user successfully."
-      flash[:alert] = ""
+      flash[:notice] = "更新が成功しました。"
+     
       redirect_to user_path(@user.id)
     else
-      
+      flash.now[:alert] = "更新に失敗しました。内容を確認してください。"
+      @user = User.find(params[:id]) #失敗時にフォームのデフォルト値に現在のデータを表示するため
       render :edit
     end
   end
