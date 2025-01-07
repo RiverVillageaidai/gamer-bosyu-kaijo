@@ -1,0 +1,28 @@
+  <%# 投稿一覧を表示する部分テンプレート %>
+ 
+  <div class="list-group">    
+    <% posts.each do |post| %>
+      <a href="<%= post_path(post) %>" class="list-group-item list-group-item-action border border-primary">
+
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <%= image_tag post.get_image(300,300) %>
+          </div>
+
+          <div class="col-md-8" style="word-break: break-all;">
+
+            <p class ="mb-1 " style="font-size: 1.5rem; font-weight: bold;">
+              <%= post.title %>
+            </p>
+
+            <p class= " mb-1 w-100 text-wrap">
+              <%# 投稿の本文を短く切り取る %>
+              <%= truncate(post.body, length: 100) %>
+            </p>
+
+            <p class="text-muted small">投稿者: <%= post.user.name %> | <%= post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+          </div>
+        </div>
+      </a>  
+    <% end %> 
+  </div>
