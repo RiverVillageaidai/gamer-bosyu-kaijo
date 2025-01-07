@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts #ユーザーページのユーザーが投稿した投稿のみ取り出している。
+    @posts = @user.posts.order("created_at DESC") #ユーザーページのユーザーが投稿した投稿のみ取り出している。
   end
 
   def edit
