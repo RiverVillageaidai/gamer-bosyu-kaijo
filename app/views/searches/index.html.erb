@@ -1,0 +1,23 @@
+
+<%# 検索結果一覧表示 %>
+<% if @model == 'user' %>
+	<h2>User 検索結果 一覧 </h2>
+  <p>検索文字 "<%= @query %>" </p>
+  <div class="container mt-4 ">
+    <h3 class="mb-5 text-center ">ユーザー一覧</h3>
+    <%# ユーザー一覧呼び出し %>
+    <%= render 'shared/user_list', users: @search_results %>
+  </div>
+<% elsif @model == 'post' %>
+	<h2>Post 検索結果 一覧 </h2>
+  <p>検索文字 "<%= @query %>" </p>
+  <div class="container mt-4 ">
+    <h3 class="mb-5 text-center ">投稿一覧</h3>
+    <div class="text-end mb-5">
+      <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
+    </div>
+    <%# 投稿一覧呼び出し %>
+   <%= render 'shared/post_list', posts: @search_results %>
+  </div>
+<% end %>
+
