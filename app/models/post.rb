@@ -5,6 +5,7 @@ class Post < ApplicationRecord
 
   # アソシエーション
   belongs_to :user
+  has_many :comments, dependent: :destroy
 
   # バリデーション
   validates :title, presence: true 
