@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  devise_for :admin, 
+  skip: [:registrations, :password], #サインアップとパスワード設定機能をスキップ
+  controllers: {sessions: 'admin/sessions'}
+
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
   root to: 'homes#top'
