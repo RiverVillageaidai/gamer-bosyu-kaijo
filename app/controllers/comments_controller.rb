@@ -9,6 +9,11 @@ class CommentsController < ApplicationController
     redirect_to post_path(post)
   end
 
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to request.referer, notice: "コメントを削除しました。"
+  end
 
   private
 
