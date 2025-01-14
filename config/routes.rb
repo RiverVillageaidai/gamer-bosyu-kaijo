@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   skip: [:registrations, :password], #サインアップとパスワード設定機能をスキップ
   controllers: {sessions: 'admin/sessions'}
 
+  namespace :admin do
+    get 'dashboards', to: 'dashboards#index'
+    resources :users, only: [:destroy]
+  end
+
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
   root to: 'homes#top'
