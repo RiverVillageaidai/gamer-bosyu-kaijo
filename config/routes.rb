@@ -5,14 +5,16 @@ Rails.application.routes.draw do
   controllers: {sessions: 'admin/sessions'}
 
   namespace :admin do
-    get 'dashboards', to: 'dashboards#index'
-    resources :users, only: [:show] do
+    get 'dashboards', to: 'dashboards#top'
+    resources :users, only: [:show,:index] do
       member do
         patch 'withdraw' => 'users#withdraw'
         patch 'rejoin' => 'users#rejoin'
       end
     end 
   end
+
+
 
   scope module: :public do
     devise_for :users, controllers: { sessions: 'public/sessions' } #Deviseのデフォルトのsessionsコントローラーをカスタムコントローラー(public/sessions)に置き換え
