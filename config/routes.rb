@@ -12,6 +12,10 @@ Rails.application.routes.draw do
         patch 'rejoin' => 'users#rejoin'
       end
     end 
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :comments, only: [:destroy]
+    end
+
   end
 
 
