@@ -6,7 +6,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
-    resources :users, only: [:destroy]
+    resources :users, only: [:show] do
+      member do
+        patch 'withdraw' => 'users#withdraw'
+        patch 'rejoin' => 'users#rejoin'
+      end
+    end 
   end
 
   scope module: :public do
