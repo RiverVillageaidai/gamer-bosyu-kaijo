@@ -1,0 +1,16 @@
+<h1>Posts#index</h1>
+<p>Find me in app/views/posts/index.html.erb</p>
+
+<div class="container mt-4 ">
+
+  <h1 class="mb-5 text-center ">投稿一覧</h1>
+  
+  <div class="text-end mb-5">
+    <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
+  </div>
+
+  <%# 投稿一覧呼び出し %>
+  <%= render 'public/shared/post_list', posts: @posts %>
+
+</div>        
+          
