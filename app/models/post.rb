@@ -5,6 +5,7 @@ class Post < ApplicationRecord
 
   # アソシエーション
   belongs_to :user
+  has_many :comments, dependent: :destroy
 
   # バリデーション
   validates :title, presence: true 
@@ -19,5 +20,24 @@ class Post < ApplicationRecord
     end
       image.variant(resize_to_limit: [width, height]).processed
   end
+
+  # 投稿検索用 
+  def self.search_for(query, method) #self →Post自体をさしている
+
+    if method == 'perfect' #検索方法が'perfect'（完全一致）の場合に実行
+      Post.where(title: query).order(created_at: :desc) #titleカラムがqueryと完全に一致するレコードを検索
+
+    elsif method == 'forward' #検索方法が'forward'（前方一致）の場合に実行
+      Post.where('title LIKE ?', query+'%').order(created_at: :desc) #titleカラムがqueryで始まるレコードを検索
+
+    elsif method == 'backward' #検索方法が'backward'（後方一致）の場合に実行
+      Post.where('title LIKE ?', '%'+query).order(created_at: :desc) #titleカラムがqueryで終わるレコードを検索
+
+    else #上記以外の場合、部分一致の検索処理を実行
+      Post.where('title LIKE ?', '%'+query+'%').order(created_at: :desc) #titleカラムがqueryを含むレコードを検索
+    end
+  end
+
+
 
 end

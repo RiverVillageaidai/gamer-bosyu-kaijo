@@ -12,13 +12,14 @@ class User < ApplicationRecord
   # プロフィール画像
   has_one_attached :profile_image
 
-   # アソシエーション
-   has_many :posts, dependent: :destroy
+  # アソシエーション
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
-    # バリデーション
-    validates :name, presence: true 
-    validates :email, presence: true 
-    validates :introduction, length: { maximum: 500 }
+  # バリデーション
+  validates :name, presence: true 
+  validates :email, presence: true 
+  validates :introduction, length: { maximum: 500 }
 
   # プロフィール画像用
   def get_profile_image(width, height)
@@ -28,5 +29,22 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+    # ユーザー検索用
+    def self.search_for(query, method) #self →User自体をさしている
+
+      if method == 'perfect' #検索方法が'perfect'（完全一致）の場合に実行
+        User.where(name: query).order(created_at: :desc) #nameカラムがqueryと完全に一致するレコードを検索
+  
+      elsif method == 'forward' #検索方法が'forward'（前方一致）の場合に実行
+        User.where('name LIKE ?', query+'%').order(created_at: :desc) #nameカラムがqueryで始まるレコードを検索
+  
+      elsif method == 'backward' #検索方法が'backward'（後方一致）の場合に実行
+        User.where('name LIKE ?', '%'+query).order(created_at: :desc) #nameカラムがqueryで終わるレコードを検索
+  
+      else #上記以外の場合、部分一致の検索処理を実行
+        User.where('name LIKE ?', '%'+query+'%').order(created_at: :desc) #nameカラムがqueryを含むレコードを検索
+      end
+    end
 
 end

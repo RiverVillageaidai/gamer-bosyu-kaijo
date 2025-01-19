@@ -1,0 +1,23 @@
+  <%# ユーザー一覧を表示する部分テンプレート %>
+ 
+  <div class="list-group">    
+    <% users.each do |user| %>
+      <a href="<%= user_path(user) %>" class="list-group-item border border-primary">
+
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <%= image_tag user.get_profile_image(300,300) %>
+          </div>
+
+          <div class="col-md-8">
+            <div>
+              ユーザー名: <%= user.name %> <br>
+              <% if user.introduction.present? %>
+                introduction: <%= user.introduction %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </a>  
+    <% end %> 
+  </div>

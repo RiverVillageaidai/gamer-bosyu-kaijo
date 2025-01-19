@@ -1,0 +1,69 @@
+<h1>Posts#show</h1>
+<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container">
+
+  <%# 投稿内容表示 %>
+  <div class="row bg-secondary text-white m-5">
+    <div class="col-md-1 p-3">
+      <%# 左側投稿者イメージ画像、投稿者表示 %>
+      <%= link_to user_path(@post.user.id) do%> 
+        <%= image_tag @post.user.get_profile_image(100,100) %><br>
+      <% end %>
+      投稿者:<br> 
+      <%= @post.user.name %><br>
+    </div>
+    <%# 右側投稿画像、タイトル本文表示 %>
+    <div class="col-md-10 offset-md-1 p-3 bg-light text-dark">
+      <%= image_tag @post.get_image(600,600), class: "img-fluid" %><br>
+      タイトル: <%= @post.title %><br>
+      コメント数：<%= @post.comments.count %>
+      本文: <%= @post.body %><br>
+        <% if @post.user_id == current_user.id %>
+          <td><%= link_to "編集", edit_post_path(@post.id), class:"btn btn-sm btn-success" %></td>
+          <td><%= link_to "削除", post_path(@post), class:"btn btn-sm btn-danger", method: :delete %></td>
+        <% end %>
+    </div>
+  </div>
+
+  <%# コメント表示 %>
+  <div class="row bg-light text-dark m-5">
+
+    <div class="col-md-12 p-3 bg-light text-dark">
+      <div>
+        <% @post.comments.each do |comment| %>
+        <div class="row">
+          <div class="col">
+            <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
+          </div>
+
+          <div class="col">
+            <p class="text-muted small">投稿ユーザー: <%= comment.user.name %><br>
+            投稿日: <%= comment.created_at.strftime('%Y/%m/%d') %></p>
+            <%= comment.content %><br>
+
+            <% if comment.user_id == current_user.id %> 
+              <div class ="row">
+                <div class="col-md-10"></div>
+                <div class="col-md-2 ">
+                  <%= link_to "削除", post_comment_path(comment.post, comment), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
+                </div>
+              </div> 
+            <% end %>
+
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%# コメント投稿フォーム %>
+  <div class="row m-5">
+    <div class =col>
+       <%= form_with model: [@post, @comment] do |f| %>
+          <%= f.text_area :content, rows: '1', placeholder: "コメント",style: "width: 100%; height: 150px; resize: none;" %><br>
+          <%= f.submit "送信" %>
+        <% end %>
+    </div>
+  </div>
+
+</div>
