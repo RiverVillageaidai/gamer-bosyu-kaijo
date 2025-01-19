@@ -17,7 +17,7 @@
       コメント数：<%= @post.comments.count %>
       本文: <%= @post.body %><br>
         <% if admin_signed_in? %>
-          <td><%= link_to "削除", post_path(@post), class:"btn btn-sm btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" }%></td>
+          <td><%= link_to "削除", admin_post_path(@post), class:"btn btn-sm btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" }%></td>
         <% end %>
     </div>
   </div>
