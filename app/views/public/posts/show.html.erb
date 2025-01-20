@@ -17,7 +17,38 @@
       <%= image_tag @post.get_image(600,600), class: "img-fluid" %><br>
       タイトル: <%= @post.title %><br>
       コメント数：<%= @post.comments.count %>
+
+      <%# いいね %>
+      <% if @post.user_id == current_user.id %> <%# 自分の投稿かどうか判定 %>
+      <%# current userの投稿の時 いいねボタンを表示のみ %>
+        <% if @post.liked_by?(current_user) %>
+          <p>
+            ♥<%= @post.likes.count %> いいね
+          </p>
+        <% else %>
+          <p>
+            ♡<%= @post.likes.count %> いいね
+          </p>
+        <% end %><br>
+      <% else %>
+      <%# current userの投稿でない時 いいねボタンを押下できる %>
+        <% if @post.liked_by?(current_user) %>
+          <p>
+            <%= link_to post_like_path(@post), method: :delete do %>
+              ♥<%= @post.likes.count %> いいね
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to post_like_path(@post), method: :post do %>
+              ♡<%= @post.likes.count %> いいね
+            <% end %>
+          </p>
+        <% end %><br>
+      <% end %>
+
       本文: <%= @post.body %><br>
+
         <% if @post.user_id == current_user.id %>
           <td><%= link_to "編集", edit_post_path(@post.id), class:"btn btn-sm btn-success" %></td>
           <td><%= link_to "削除", post_path(@post), class:"btn btn-sm btn-danger", method: :delete %></td>

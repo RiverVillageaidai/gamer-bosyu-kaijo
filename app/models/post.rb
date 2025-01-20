@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   # アソシエーション
   belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   # バリデーション
   validates :title, presence: true 
@@ -38,6 +39,10 @@ class Post < ApplicationRecord
     end
   end
 
+  #いいね機能用
+  def liked_by?(user)
+    likes.exists?(user_id: user.id) #likesテーブル内に引数で渡されたuser.idが存在するか　（存在している：true していない：false)
+  end
 
 
 end
