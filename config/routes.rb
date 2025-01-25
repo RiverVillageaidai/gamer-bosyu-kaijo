@@ -31,12 +31,17 @@ Rails.application.routes.draw do
     get "search" => "searches#index"
 
     resources :users, only: [:show, :edit, :update, :index] do
-     member do
+      resource :relationships, only: [:create, :destroy] #フォロー機能
+        member do
+          get "followings" => "relationships#followings",as: "followings" 
+  	      get "followers" => "relationships#followers",as: "followers"
+        end
+      member do
         # ユーザー退会確認画面
-       get 'deactivate' => 'users#deactivate'
+        get 'deactivate' => 'users#deactivate'
         # ユーザー退会　論理削除
-       patch 'withdraw' => 'users#withdraw'
-     end
+        patch 'withdraw' => 'users#withdraw'
+      end
     end
 
     resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
