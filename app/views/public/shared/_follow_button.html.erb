@@ -1,0 +1,8 @@
+<%# フォローする、フォロー解除するボタン %>
+<% unless current_user == user %>
+  <% if current_user.following?(user) %>
+    <%= button_to 'フォロー解除', user_relationships_path(user), method: :delete %>
+  <% else %>
+    <%= button_to 'フォロー', user_relationships_path(user.id), method: :post %>
+  <% end %>
+<% end %>
