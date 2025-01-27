@@ -30,17 +30,13 @@ Rails.application.routes.draw do
     #検索ボタンが押された時、Searchesコントローラーのsearch実行
     get "search" => "searches#index"
 
-    resources :users, only: [:show, :edit, :update, :index] do
+    resources :users, only: [:index,:show, :edit, :update ] do
       resource :relationships, only: [:create, :destroy] #フォロー機能
-        member do
-          get "followings" => "relationships#followings",as: "followings" 
-  	      get "followers" => "relationships#followers",as: "followers"
-        end
       member do
-        # ユーザー退会確認画面
-        get 'deactivate' => 'users#deactivate'
-        # ユーザー退会　論理削除
-        patch 'withdraw' => 'users#withdraw'
+        get "followings" => "relationships#followings",as: "followings" #フォロー一覧
+  	    get "followers" => "relationships#followers",as: "followers" #フォロワー一覧
+        get 'deactivate' => 'users#deactivate' # ユーザー退会確認画面
+        patch 'withdraw' => 'users#withdraw' # ユーザー退会　論理削除
       end
     end
 
@@ -49,6 +45,7 @@ Rails.application.routes.draw do
       resource :like, only: [:create, :destroy]
     end
 
+    resources :groups, only: [:index, :show, :new, :create, :edit, :update]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

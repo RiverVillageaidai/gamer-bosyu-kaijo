@@ -1,0 +1,20 @@
+
+   
+  <% groups.each do |group| %>
+      <a href="<%= group_path(group) %>" class="list-group-item border border-primary">
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <%= image_tag group.get_group_image(300,300) %>
+          </div>
+
+          <div class="col-md-8">
+            <div>
+              グループ名: <%= group.name %> <br>
+              <% if group.introduction.present? %>
+                introduction: <%= group.introduction %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </a>  
+    <% end %> 
