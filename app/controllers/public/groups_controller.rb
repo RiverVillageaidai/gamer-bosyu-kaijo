@@ -33,7 +33,6 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     if @group.update(group_params)
       flash[:notice] = "グループ編集が成功しました。"
-      
       redirect_to groups_path, method: :post
     else
       flash.now[:alert] = "グループ編集に失敗しました。内容を確認してください。"
