@@ -17,4 +17,10 @@ class Group < ApplicationRecord
     end
     group_image.variant(resize_to_fill: [width, height]).processed
   end
+
+  # グループに所属してるか確認
+  def group_member?(user)
+    group_members.exists?(user_id: user.id)
+  end
+
 end

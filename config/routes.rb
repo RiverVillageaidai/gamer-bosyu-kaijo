@@ -45,7 +45,9 @@ Rails.application.routes.draw do
       resource :like, only: [:create, :destroy]
     end
 
-    resources :groups, only: [:index, :show, :new, :create, :edit, :update]
+    resources :groups, only: [:index, :show, :new, :create, :edit, :update] do 
+      resource :group_members, only: [:create, :destroy]
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
