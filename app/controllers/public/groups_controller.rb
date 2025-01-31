@@ -40,6 +40,12 @@ class Public::GroupsController < ApplicationController
     end
   end
 
+  # グループの参加希望者一覧
+  def display_join_requests
+    @group = Group.find(params[:id])
+    @display_join_requests = @group.group_join_requests
+  end
+
   private
 
   def group_params

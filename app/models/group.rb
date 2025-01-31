@@ -2,6 +2,8 @@ class Group < ApplicationRecord
   # アソシエーション
   has_many :group_members,dependent: :destroy
   has_many :users, through: :group_members
+  has_many :group_join_requests, dependent: :destroy
+  belongs_to :owner, class_name: "User"  #オーナーIDを元にユーザー名表示用
 
   # バリデーション
   validates :name, presence: true

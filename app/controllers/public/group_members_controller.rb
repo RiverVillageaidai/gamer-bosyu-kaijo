@@ -2,9 +2,17 @@ class Public::GroupMembersController < ApplicationController
   before_action :authenticate_user!
 
   def create 
-    group_member = current_user.group_members.new(group_id: params[:group_id])
-    group_member.save
-    flash.now[:alert] = "グループに参加しました。" 
+    @group = Group.find(params[:group_id])
+    @group_join_request = GroupJoinRequest.find(params[:group_join_request_id])
+    user = User.find(@group_join_request.user_id)
+    # グループオーナーが参加できないようにする
+    if @group.owner_id == user.id
+      flash[:alert] = "グループオーナーはグループに参加できません。"
+      redirect_to request.referer and return
+    end
+    @group_member = GroupMember.create(user_id: @group_join_request.user_id, group_id: params[:group_id])
+    @group_join_request.destroy
+    flash[:alert] = "#{user.name} さんがグループに参加しました。" 
     redirect_to request.referer
   end
 
