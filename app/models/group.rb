@@ -25,4 +25,21 @@ class Group < ApplicationRecord
     group_members.exists?(user_id: user.id)
   end
 
+  # グループ検索用メソッド---------------------------------------------------------------------------
+  def self.search_for(query, method) #self →Group自体をさしている
+
+    if method == 'perfect' #検索方法が'perfect'（完全一致）の場合に実行
+      Group.where(name: query).order(created_at: :desc) #nameカラムがqueryと完全に一致するレコードを検索
+  
+    elsif method == 'forward' #検索方法が'forward'（前方一致）の場合に実行
+      Group.where('name LIKE ?', query+'%').order(created_at: :desc) #nameカラムがqueryで始まるレコードを検索
+  
+    elsif method == 'backward' #検索方法が'backward'（後方一致）の場合に実行
+      Group.where('name LIKE ?', '%'+query).order(created_at: :desc) #nameカラムがqueryで終わるレコードを検索
+  
+    else #上記以外の場合、部分一致の検索処理を実行
+      Group.where('name LIKE ?', '%'+query+'%').order(created_at: :desc) #nameカラムがqueryを含むレコードを検索
+    end
+  end
+
 end

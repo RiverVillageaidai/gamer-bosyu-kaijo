@@ -19,5 +19,13 @@
     <%# 投稿一覧呼び出し %>
    <%= render 'public/shared/post_list', posts: @search_results %>
   </div>
+<% elsif @model == 'group'%>
+  <h2>Group 検索結果 一覧 </h2>
+  <p>検索文字 "<%= @query %>" </p>
+  <div class="container mt-4 ">
+    <h3 class="mb-5 text-center ">グループ一覧</h3>
+    <%# グループ一覧呼び出し%>
+     <%= render 'public/shared/group_list', groups: @search_results %>
+  </div>
 <% end %>
 
