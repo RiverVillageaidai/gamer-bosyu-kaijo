@@ -19,8 +19,9 @@
 
       <%# グループオーナー用 %>
       <% if @group.owner_id == current_user.id %>
-        <%= link_to "編集", edit_group_path(@group), class: "btn btn-sm btn-success" %>
+        <%= link_to "グループ編集", edit_group_path(@group), class: "btn btn-sm btn-success" %>
         <%= link_to "承認待ち一覧", display_join_requests_path(@group),  class: "btn btn-sm btn-success" %> 
+        <%= link_to "グループ削除", group_path(@group),method: :delete, class: "btn btn-sm btn-danger" %>
       <% end %>
 
       <%# グループ参加済みユーザー一覧表示 %>

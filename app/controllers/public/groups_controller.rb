@@ -40,6 +40,12 @@ class Public::GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    redirect_to groups_path, notice: 'グループを削除しました。'
+  end
+
   # グループの参加希望者一覧
   def display_join_requests
     @group = Group.find(params[:id])

@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       resource :like, only: [:create, :destroy]
     end
 
-    resources :groups, only: [:index, :show, :new, :create, :edit, :update] do 
+    resources :groups, only: [:index, :show, :new, :create, :edit, :update, :destroy] do 
       resource :group_members, only: [:create, :destroy]
       resource :group_join_requests, only: [:create, :destroy]
     end
