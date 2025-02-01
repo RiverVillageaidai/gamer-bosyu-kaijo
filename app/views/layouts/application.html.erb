@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <%# FontAwesomeの導入 %>
+    <script src="https://kit.fontawesome.com/81b2a4006b.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -54,23 +57,13 @@
                     <i class="fa-solid fa-house"></i>
                    新規投稿
                   </a>
-                </li>                
+                </li>
                 
                 <% if user_signed_in? %>
                   <a class="nav-link text-light" href="<%= user_path(current_user) %>">
-                    プロフィール
+                    マイページ
                   </a>
                 <% end %>
-
-
-                <li>
-                  <a class="nav-link text-light" >
-                    <i class="fa-solid fa-house"></i>
-                    グループ新規作成
-                  </a>
-                </li>
-
-
 
                 <li>
                  <%= link_to  destroy_user_session_path, method: :delete, class:"nav-link text-light" do%>
@@ -86,8 +79,6 @@
                    ログイン
                   </a>
                 </li>
-
-
 
                 <li>
                   <a class="nav-link text-light" href="<%= new_user_registration_path %>" >
