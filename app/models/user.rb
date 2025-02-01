@@ -17,16 +17,17 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  # フォローしている関係
+  # フォロー
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  # フォローしている一覧
   has_many :followings, through: :active_relationships, source: :followed
- 
-  # フォローされている関係
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  #フォローされている一覧
   has_many :followers, through: :passive_relationships, source: :follower
 
+  # グループ
+  has_many :group_members, dependent: :destroy
+  has_many :groups, through: :group_members
+  has_many :group_join_requests, dependent: :destroy
+  
   # バリデーション------------------------------------------------------------------------------------------------------
   validates :name, presence: true 
   validates :email, presence: true 

@@ -1,0 +1,9 @@
+<div class ="container">
+
+  <h2 class="mb-5 text-center ">グループ一覧</h2>
+  <div class="text-end mb-5">
+    <%= link_to "グループ作成", new_group_path, class: "btn btn-primary" %>
+  </div>
+  <%# グループ一覧呼び出し %>
+  <%= render 'public/shared/group_list', groups: @groups %>
+</div>
