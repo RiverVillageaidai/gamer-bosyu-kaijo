@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
   end
  
   def action_is_public?
-    controller_name == 'homes' && %w[top about].include?(action_name) #homes#topとhomes#aboutは認証が不要
+    (controller_name == 'homes' && %w[top about].include?(action_name)) || 
+    (controller_name == 'posts' && %w[index show].include?(action_name)) 
   end
 
 end

@@ -2,11 +2,11 @@
  
   <div class="list-group">    
     <% posts.each do |post| %>
-      <a href="<%= post_path(post) %>" class="list-group-item list-group-item-action border border-primary">
+      <a href="<%= post_path(post) %>" class="list-group-item list-group-item-action border border-secondary">
 
         <div class="row align-items-center">
           <div class="col-md-4">
-            <%= image_tag post.get_image(300,300) %>
+            <%= image_tag post.get_image(200,200) %>
           </div>
 
           <div class="col-md-8" style="word-break: break-all;">

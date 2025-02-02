@@ -5,7 +5,7 @@
     <% @users.each do |user| %>
       <div class="row p-2 align-items-center border border-primary">
             <div class="col-md-4">
-              <%= image_tag user.get_profile_image(300,300) %>
+              <%= image_tag user.get_profile_image(100,100) %>
             </div>
 
             <div class="col-md-7">
@@ -22,12 +22,12 @@
               <div class="row">
                 <button type="button" class="btn btn-danger btn-lg btn-block" >
                   <%= link_to withdraw_admin_user_path(user), method: :patch, data: { confirm: '退会状態にします。よろしいですか？' } do %>
-                    <i>退会</i>
+                    <i class= "text-dark">退会</i>
                   <%end%>
                 </button>
                 <button type="button" class="btn btn-success btn-lg btn-block" >
                   <%= link_to rejoin_admin_user_path(user), method: :patch, data: { confirm: '入会状態にします。よろしいですか？' } do %>
-                    <i>入会</i>
+                    <i class= "text-dark">入会</i>
                   <%end%>
                 </button>
               </div>

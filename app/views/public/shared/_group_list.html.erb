@@ -1,13 +1,13 @@
 
    
   <% groups.each do |group| %>
-      <a href="<%= group_path(group) %>" class="list-group-item border border-primary">
+      <a href="<%= group_path(group) %>" class="list-group-item border border-secondary">
         <div class="row align-items-center">
           <div class="col-md-4">
             <%= image_tag group.get_group_image(100,100) %>
           </div>
 
-          <div class="col-md-8">
+          <div class="col-md-8 text-dark">
             <div>
               グループ名: <%= group.name %> <br>
               <% if group.introduction.present? %>

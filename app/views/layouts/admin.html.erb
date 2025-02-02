@@ -71,9 +71,11 @@
     </header>
     
     <%# フラッシュメッセージ表示 %>
-    <p id ="notice"><%= flash[:notice] %></p>
-    <p id ="alert"><%= flash[:alert] %></p>
-
+    <div id="flash-messages" class="min-vh-10 d-flex align-items-center justify-content-center">
+      <p class="text-success font-weight-bold"><%= flash[:notice] %></p>
+      <p class="text-danger font-weight-bold"><%= flash[:alert] %></p>
+    </div>
+    
   <%= yield %>
 </body>
 </html>
