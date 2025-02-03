@@ -3,7 +3,7 @@ class Public::GroupsController < ApplicationController
   before_action :ensure_group_owner, only: [:edit, :update] #ユーザーが edit または update アクションにアクセスしたとき ensure_group_ownerメソッド
   
   def index
-    @groups = Group.all
+    @groups = Group.order(created_at: :desc).page(params[:page])
   end
 
   def show

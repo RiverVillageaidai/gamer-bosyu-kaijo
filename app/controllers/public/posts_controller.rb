@@ -4,8 +4,7 @@ class Public::PostsController < ApplicationController
 
   def index 
     # 降順に並び替え
-    @posts = Post.all.order("created_at DESC")
-
+    @posts = Post.order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -24,7 +23,7 @@ class Public::PostsController < ApplicationController
         redirect_to posts_path, notice: "投稿が成功しました。"
         # redirect_to post_path(@post.id)
       else
-        @posts = Post.all    
+        @posts = Post.order(created_at: :desc).page(params[:page])
         flash.now[:alert] = "投稿に失敗しました。内容を確認してください。"  
         render :index
       end    

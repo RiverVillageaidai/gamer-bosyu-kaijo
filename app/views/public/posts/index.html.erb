@@ -9,4 +9,7 @@
   <%= render 'public/searches/search_form' %>
   <%# 投稿一覧呼び出し %>
   <%= render 'public/shared/post_list', posts: @posts %>
+      <h2 class=" text-light ">
+    <%= paginate @posts, class: "pagination" %>
+    </h2>
 </div>
