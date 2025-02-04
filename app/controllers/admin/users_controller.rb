@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.all
+    @users = User.order(created_at: :desc).page(params[:page])
   end
   
   # ユーザー退会処理admin
