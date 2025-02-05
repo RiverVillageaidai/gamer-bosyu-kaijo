@@ -72,3 +72,5 @@ gem "net-smtp"
 gem "net-pop"
 # IMAPはメールサーバー上のメールボックスを操作するためのプロトコルであり、このGemを使用することでRubyプログラムからIMAPサーバーに接続してメールボックスを操作することができます。
 gem "net-imap"
+
+gem 'kaminari','~> 1.2.1'

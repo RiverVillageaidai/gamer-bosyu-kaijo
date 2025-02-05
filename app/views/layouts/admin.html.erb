@@ -4,6 +4,10 @@
   <title>Admin - gamer-bosyu-kaijo</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+
+  <%# FontAwesomeの導入 %>
+  <script src="https://kit.fontawesome.com/81b2a4006b.js" crossorigin="anonymous"></script>
+  
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -33,9 +37,9 @@
                 </li>
 
                 <li>
-                  <a class="nav-link text-light" >
+                  <a class="nav-link text-light" href="<%= admin_groups_path %>" >
                     <i class="fa-solid fa-house"></i>
-                    グループ管理（仮）
+                    グループ管理
                   </a>
                 </li>
 
@@ -71,9 +75,11 @@
     </header>
     
     <%# フラッシュメッセージ表示 %>
-    <p id ="notice"><%= flash[:notice] %></p>
-    <p id ="alert"><%= flash[:alert] %></p>
-
+    <div id="flash-messages" class="min-vh-10 d-flex align-items-center justify-content-center">
+      <p class="text-success font-weight-bold"><%= flash[:notice] %></p>
+      <p class="text-danger font-weight-bold"><%= flash[:alert] %></p>
+    </div>
+    
   <%= yield %>
 </body>
 </html>

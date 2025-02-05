@@ -6,6 +6,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%# FontAwesomeの導入 %>
+    <script src="https://kit.fontawesome.com/81b2a4006b.js" crossorigin="anonymous"></script>
+
+
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -17,7 +21,7 @@
     
         <div class="container">
           <a class ="navbar-brand" href="/">
-           <span>"ゲーマー募集会所"</span>
+           <span>ゲーマー募集会所</span>
           </a>
           <%# ドロップダウンを設定 %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,69 +34,63 @@
               <% if user_signed_in? %> 
                 <li>
                   <a class="nav-link text-light" href="<%= homes_about_path %>" >
-                   <i class="fa-solid fa-house"></i>
-                    about
+                   <i class="fa-solid fa-house"> about</i>
+
                   </a>
                 </li>
 
                 <li>
-                  <a class="nav-link text-light" >
-                    <i class="fa-solid fa-house"></i>
-                    グループ一覧
+                  <a class="nav-link text-light" href="<%= groups_path %>" >
+                    <i class="fa-solid fa-user-group"> グループ一覧</i>
                   </a>
                 </li>
 
                 <li>
                   <a class="nav-link text-light" href="<%= posts_path %>">
-                    <i class="fa-solid fa-house"></i>
-                    投稿一覧
+                    <i class="fa-solid fa-star"> 投稿一覧</i>
                   </a>
                 </li>
 
                 <li>
                   <a class="nav-link text-light" href="<%= new_post_path %>">
-                    <i class="fa-solid fa-house"></i>
-                   新規投稿
+                    <i class="fa-solid fa-paper-plane"> 新規投稿</i>
                   </a>
-                </li>                
+                </li>
                 
                 <% if user_signed_in? %>
                   <a class="nav-link text-light" href="<%= user_path(current_user) %>">
-                    プロフィール
+                    <i class="fa-solid fa-user"> マイページ</i>
                   </a>
                 <% end %>
 
-
-                <li>
-                  <a class="nav-link text-light" >
-                    <i class="fa-solid fa-house"></i>
-                    グループ新規作成
-                  </a>
-                </li>
-
-
-
                 <li>
                  <%= link_to  destroy_user_session_path, method: :delete, class:"nav-link text-light" do%>
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    ログアウト
+                    <i class="fa-solid fa-right-from-bracket">  ログアウト</i>
                     <%end%>
                 </li>
 
               <%else%>
                 <li>
-                  <a class="nav-link text-light" href="<%= new_user_session_path %>" >
-                    <i class="fa-solid fa-house"></i>
-                   ログイン
+                  <a class="nav-link text-light" href="<%= homes_about_path %>" >
+                   <i class="fa-solid fa-house"> about</i>
                   </a>
                 </li>
 
+                <li>
+                  <a class="nav-link text-light" href="<%= posts_path %>">
+                    <i class="fa-solid fa-star"> 投稿一覧</i>
+                  </a>
+                </li>
 
+                <li>
+                  <a class="nav-link text-light" href="<%= new_user_session_path %>" >
+                    <i class="fa-solid fa-right-to-bracket">  ログイン</i>
+                  </a>
+                </li>
 
                 <li>
                   <a class="nav-link text-light" href="<%= new_user_registration_path %>" >
-                    <i class="fa-solid fa-house"></i>
-                    新規登録
+                    <i class="fa-solid fa-address-card"> 新規登録</i>
                   </a>
                 </li>
               <%end%>
@@ -105,11 +103,12 @@
     </header>
     
     <%# フラッシュメッセージ表示 %>
-    <p id ="notice"><%= flash[:notice] %></p>
-    <p id ="alert"><%= flash[:alert] %></p>
+    <div id="flash-messages" class="min-vh-10 d-flex align-items-center justify-content-center">
+      <p class="text-success font-weight-bold"><%= flash[:notice] %></p>
+      <p class="text-danger font-weight-bold"><%= flash[:alert] %></p>
+    </div>
 
-    <%# 検索用フォーム表示 %>
-    <%= render 'public/searches/search_form' %>
+
 
     <%= yield %>
 

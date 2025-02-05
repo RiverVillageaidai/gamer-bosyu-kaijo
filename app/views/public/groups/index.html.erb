@@ -1,0 +1,11 @@
+
+<div class="container mt-4 bg-dark">
+  <h1 class="m-2 p-2 text-center text-light">グループ一覧</h1>
+  <div class="text-end mb-5">
+    <%= link_to "グループ作成", new_group_path, class: "btn btn-primary" %>
+  </div>
+  <%# 検索用フォーム表示 %>
+  <%= render 'public/searches/search_form' %>
+  <%# グループ一覧呼び出し %>
+  <%= render 'public/shared/group_list', groups: @groups %>
+</div>

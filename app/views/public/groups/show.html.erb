@@ -1,0 +1,56 @@
+<div class="container mt-4 bg-dark">
+  <h1 class="m-2 p-2 text-center text-light">グループ名: <%= @group.name %></h1>
+  <div class="row">
+    <div class="col md-3 p-3">
+      <%= image_tag @group.get_group_image(200,200) %><br>
+    </div>
+    <div class= "col md9 text-light">
+  
+      <p>グループオーナー: <%= @group.owner.name %></p>
+      <p>グループメンバー数： <%= @group.group_members.count %> </p>
+      <% unless @group.owner_id == current_user.id %>
+        <% if @group.group_member?(current_user)%>
+          <%= link_to 'グループ退会', group_group_members_path(@group), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "本当にグループを退会しますか？" } %>
+        <% elsif @group.group_join_requests.exists?(user_id: current_user.id) %> <%# useridがデータベース(group_join_requests)内に存在しているか判定 %>
+          <%= link_to 'グループ加入申請取消',  group_group_join_requests_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+        <% else %>
+          <%= link_to 'グループ加入申請',  group_group_join_requests_path(@group), method: :post, class: "btn btn-sm btn-success" %>
+        <% end %>
+      <% end %>
+
+      <%# グループオーナー用 %>
+      <% if @group.owner_id == current_user.id %>
+        <%= link_to "グループ編集", edit_group_path(@group), class: "btn btn-sm btn-success" %>
+        <%= link_to "承認待ち一覧", display_join_requests_path(@group),  class: "btn btn-sm btn-success" %> 
+        <%= link_to "グループ削除", group_path(@group),method: :delete, class: "btn btn-sm btn-danger" %>
+      <% end %>
+
+      <p>グループ紹介文:<%= @group.introduction %></p>
+    </div>
+  
+  </div>
+</div>
+<div class= "container mt-4  p-3 bg-dark">
+    <h3 class="m-2 p-2 text-center text-light">グループ所属ユーザー一覧</h3>
+      <%# グループ参加済みユーザー一覧表示 %>
+
+      <% @group.users.each do |user| %>
+        <a href="<%= user_path(user) %>" class="list-group-item border border-secondary">
+          <div class="row align-items-center">
+            <div class="col-md-4">
+              <%= image_tag user.get_profile_image(100,100) %>
+            </div>
+            <div class="col-md-8 text-dark">
+              <div>
+                ユーザー名: <%= user.name %> <br>
+              </div>
+            </div>
+          </div>
+        </a>  
+      <% end %>
+</div>
+<div class="row mt-5">
+    <div class="col-md-9 mx-auto">
+      <p class="text-center"><%= link_to "戻る", groups_path, class: 'text-dark font-weight-bold' %></p>
+    </div>
+  </div>

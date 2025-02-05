@@ -1,51 +1,48 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
-  
+    <div class="col-md-3 border border-secondary">
       <%= image_tag @user.get_profile_image(200,200) %>
       <p>
         Name: <%= @user.name %><br>
         誕生日: <%= @user.birthday %><br>
+        フォロー数: <%= @user.followings.count %><br>
+        フォロワー数: <%= @user.followers.count %><br>
         introduction: <%= @user.introduction %><br>
       </p>
-      
+      <%= render 'public/shared/follow_button', user: @user %>
       <% if @user.id == current_user.id %>
-        <button type="button" class="btn btn-success btn-lg btn-block" >
-          <%= link_to  edit_user_path(@user.id) do %>
-         <i>プロフィール編集</i>
-         <%end%>
-       </button>
-
-        <button type="button" class="btn btn-dark btn-lg btn-block" >
-          <%= link_to  edit_user_path(@user.id) do %>
-          <i>フォローユーザー</i>
-          <%end%>
-       </button>
-
         <button type="button" class="btn btn-secondary btn-lg btn-block" >
           <%= link_to  edit_user_path(@user.id) do %>
-          <i>ダイレクトメセージ</i>
+          <i class= "text-light">
+            <i class="fa-solid fa-user-gear"></i>プロフィール編集
+          </i>
          <%end%>
-        </button>
-
+       </button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" >
+          <%= link_to  followings_user_path(@user.id) do %>
+          <i class= "text-light">フォロー</i>
+          <%end%>
+       </button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" >
+          <%= link_to  followers_user_path(@user.id) do %>
+          <i class= "text-light">フォロワー</i>
+          <%end%>
+       </button>
       <% end %>
-
     </div>
 
-    <div class="col-md-7 offset-md-1">
-
-      <h2 class="mb-5">ユーザー投稿一覧</h2>
-
+    <div class="col-md-8 offset-md-1 mt-4 bg-dark">
+      <h2 class="m-2 p-2 text-center text-light">ユーザー投稿一覧</h2>
       <div class="text-end mb-5">
         <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
       </div>
-
+      <%# 検索用フォーム表示 %>
+      <%= render 'public/searches/search_form' %>
       <%# 投稿一覧呼び出し %>
       <%= render 'public/shared/post_list', posts: @posts %>
-
+      <h2 class=" text-light ">
+        <%= paginate  @posts, class: "pagination" %>
+      </h2>
     </div>
 
   </div>

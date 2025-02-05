@@ -1,24 +1,24 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
 
 <% if user_signed_in? %>
-<h1>ようこそ！</h1><br>
-<p>上部のメニューから各種ページをご利用ください</p>
-
+  <div class="container mt-4 text-center">
+    <h1>ようこそ！  ゲーマー募集会所  へ</h1><br>
+    <p>上部のメニューから各種ページをご利用ください</p>
+  </div>
 <%else%>
+
   <div class="container mt-4 ">
-    <button type="button" class="btn btn-outline-primary btn-lg btn-block" >
+    <button type="button" class="btn btn-outline-primary btn-lg btn-block " >
       <%= link_to  new_user_session_path do %>
-        <i>ログイン</i>
+        <i class ="text-dark">ログイン</i>
       <%end%>
     </button>
 
     <button type="button" class="btn btn-outline-success btn-lg btn-block" >
       <%= link_to  new_user_registration_path do %>
-       <i>新規登録</i>
+       <i class ="text-dark">新規登録</i>
       <%end%>
     </button>
 
-
+    ※ログインしていない場合は投稿の閲覧のみ可能です
   </div>
 <%end%>  

@@ -1,0 +1,35 @@
+
+<div class="container">
+  <h2>グループ名：<%= @group.name %></h2>
+  <h3>承認待ち一覧</h3>
+
+  <div class="row mt-5">
+    <div class="col">
+    <% if @display_join_requests.present? %> <%#@display_join_requestsが空でない時  %>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @display_join_requests.each do |display_join_request| %>
+              <tr>
+                <td><%= link_to display_join_request.user.name, user_path(display_join_request.user.id)%></td>
+                <td><%= link_to '加入許可', group_group_members_path(@group, group_join_request_id: display_join_request.id), method: :post, class: "btn btn-sm btn-success" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <P class="text-center">承認待ちユーザーはいません。</P>
+    <% end %>
+    </div>
+  </div>
+
+
+
+</div>
