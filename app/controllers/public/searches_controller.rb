@@ -2,7 +2,7 @@ class Public::SearchesController < ApplicationController
 
   def index
 
-    @model = params[:model] #検索場所選択 "User" => "user", "Book" => "book","Group" => "group"
+    @model = params[:model] #検索場所選択 "User" => "user", "Post" => "Post","Group" => "group"
     @query = params[:query] # textfield 検索単語入力
     @method = params[:method] #検索方法選択　完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"
     if @model == 'user'
