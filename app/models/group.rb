@@ -9,7 +9,7 @@ class Group < ApplicationRecord
   validates :name, presence: true
 
   # グループ画像
-  has_one_attached :group_image
+  has_one_attached :group_image, dependent: :purge_later
 
   # グループ画像用
   def get_group_image(width, height)

@@ -1,4 +1,4 @@
-# ゲーマーボシュウカイジョ
+# ゲーマー募集会所
 
 ## サイト概要
 ゲーム仲間募集機能
@@ -31,7 +31,10 @@
 プレイヤーが達成感を共有し、他のユーザーと喜びを分かち合う場として活用できます。
 
 ## 設計書
-「後ほど作成予定」
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/17pvu_3HkFYJ2ix3dkOOi5w7dPTjfhNPr-nwCTrv90iI/edit?gid=88557689#gid=88557689)
+- [ER図](https://app.diagrams.net/#G1GhpWLb4eLiEauDLeM2oonkprxSf6A9_b#%7B%22pageId%22%3A%22LkA-50vI9zVlM_wPANrl%22%7D)
+- [UIFlows](https://app.diagrams.net/#G12moH9C_AGPAWD5d1MO_pJJguJAm8Toes#%7B%22pageId%22%3A%2248jVFMlgaSScSIEwnXbb%22%7D)
+- [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1eTRB5G05AeRt8wRjI93T7zmb5d6q751TYu1RG4M0F4s/edit?gid=957095102#gid=957095102)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -41,13 +44,6 @@
 - IDE：Visual Studio Code
 ​
 ## 使用素材
-「後ほど記述予定」
-
-Font Awesome
-<!-- - 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。 -->
-<!-- - アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。 -->
-<!-- - 使用しない場合は、使用素材の項目をREADMEから削除してください。 -->
-<!-- - 架空の団体・題材を前提にポートフォリオを制作する場合、下記のテンプレートを当項目内に記載しましょう。 -->
-<!-- 【テンプレート】 -->
-<!-- 著作権を考慮し、架空のデータを扱う予定です。 -->
-<!-- なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。 -->
+- Bootstrap(https://getbootstrap.com/) (v4.6.2)
+- Kaminari(https://github.com/kaminari/kaminari) (v1.2.1)
+- Font Awesome(https://fontawesome.com/)

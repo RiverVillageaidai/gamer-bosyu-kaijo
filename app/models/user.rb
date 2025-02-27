@@ -10,7 +10,7 @@ class User < ApplicationRecord
   end
 
   # プロフィール画像
-  has_one_attached :profile_image
+  has_one_attached :profile_image, dependent: :purge_later
 
   # アソシエーション-----------------------------------------------------------------------------------------------------
   has_many :posts, dependent: :destroy

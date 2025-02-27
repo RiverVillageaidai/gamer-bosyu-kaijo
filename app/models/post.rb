@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
 
   # 投稿画像
-  has_one_attached :image
+  has_one_attached :image, dependent: :purge_later
 
   # アソシエーション
   belongs_to :user
