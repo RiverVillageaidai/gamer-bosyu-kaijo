@@ -74,3 +74,6 @@ gem "net-pop"
 gem "net-imap"
 
 gem 'kaminari','~> 1.2.1'
+
+#  AWS S3 バケット用
+gem 'aws-sdk-s3', require: false
