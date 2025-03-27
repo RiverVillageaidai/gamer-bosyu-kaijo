@@ -10,7 +10,7 @@ class Public::SearchesController < ApplicationController
     elsif @model =='post'
       @search_results = Post.search_for(@query, @method)
     else
-      @search_results = Group.search_for(@query, @method)
+      @search_results = Group.search_for(@query, @method).page(params[:page])
     end
 
   end

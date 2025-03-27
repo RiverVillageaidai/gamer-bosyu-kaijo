@@ -16,5 +16,9 @@
   </a>  
 <% end %> 
 <h2 class=" text-light ">
-  <%= paginate @groups, class: "pagination" %>
+  <% if @search_results.present? %>
+    <%= paginate @search_results, class: "pagination" %>
+  <% else %>
+    <%= paginate @groups, class: "pagination" %>
+  <% end %>
 </h2>
