@@ -15,10 +15,11 @@
     </div>
   </a>  
 <% end %> 
-<h2 class=" text-light ">
-  <% if @search_results.present? %>
+<h2 class="text-light">
+  <%# @search_results が nil でなく、空でない（検索結果がある）かどうかを判定  @search_results が total_pages メソッドを持っているかどうかを判定。%>
+  <% if @search_results.present? && @search_results.respond_to?(:total_pages) %> <%#@search_results が nil または total_pages を持っていない場合は paginate を実行しない。%>
     <%= paginate @search_results, class: "pagination" %>
-  <% else %>
+  <% elsif @groups.present? && @groups.respond_to?(:total_pages) %> <%#@groups.respond_to?(:total_pages) → total_pages メソッドを持っているかチェック%>
     <%= paginate @groups, class: "pagination" %>
   <% end %>
 </h2>
