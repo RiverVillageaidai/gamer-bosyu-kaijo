@@ -7,17 +7,14 @@
 <%else%>
 
   <div class="container mt-4 ">
-    <button type="button" class="btn btn-outline-primary btn-lg btn-block " >
-      <%= link_to  new_user_session_path do %>
-        <i class ="text-dark">ログイン</i>
-      <%end%>
-    </button>
+ 
+    <%= link_to new_user_session_path, class: "btn btn-outline-primary btn-lg btn-block text-dark" do %>
+      <i>ログイン</i>
+    <% end %>
 
-    <button type="button" class="btn btn-outline-success btn-lg btn-block" >
-      <%= link_to  new_user_registration_path do %>
-       <i class ="text-dark">新規登録</i>
-      <%end%>
-    </button>
+    <%= link_to new_user_registration_path, class: "btn btn-outline-success btn-lg btn-block text-dark" do %>
+      <i>新規登録</i>
+    <% end %>
 
     ※ログインしていない場合は投稿の閲覧のみ可能です
   </div>
