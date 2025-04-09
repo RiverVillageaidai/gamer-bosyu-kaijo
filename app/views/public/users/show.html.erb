@@ -11,23 +11,19 @@
       </p>
       <%= render 'public/shared/follow_button', user: @user %>
       <% if @user.id == current_user.id %>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" >
-          <%= link_to  edit_user_path(@user.id) do %>
-          <i class= "text-light">
-            <i class="fa-solid fa-user-gear"></i>プロフィール編集
-          </i>
-         <%end%>
-       </button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" >
-          <%= link_to  followings_user_path(@user.id) do %>
+
+        <%= link_to edit_user_path(@user.id), class: "btn btn-secondary btn-lg btn-block text-light" do %>
+          <i class="fa-solid fa-user-gear"></i>プロフィール編集
+        <% end %>
+
+        <%= link_to followings_user_path(@user.id), class: "btn btn-secondary btn-lg btn-block " do %>
           <i class= "text-light">フォロー</i>
-          <%end%>
-       </button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" >
-          <%= link_to  followers_user_path(@user.id) do %>
+        <% end %>
+
+        <%= link_to  followers_user_path(@user.id), class: "btn btn-secondary btn-lg btn-block " do %>
           <i class= "text-light">フォロワー</i>
-          <%end%>
-       </button>
+        <% end %>
+
       <% end %>
     </div>
 
